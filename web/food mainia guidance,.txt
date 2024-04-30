@@ -1,0 +1,14 @@
+food mainia guidance,
+
+01. after extract , then folder located to inside the htdocs and you have to insert database also 
+02.serach "localhost/web" to  visit the website
+03.refer the web site
+04.click the user icon and chose first admin
+05.insert pizza, fastfood, chinese whatever you wanted and you can see the bottom you've added product.
+06.if image is not loaded please refresh the browser
+07.you can update and delete also
+08.you can insert main items and then you can serach that items also
+09.after inserting you can logout and back to home
+10.you can log to user and show the more details
+11.you can give the feedback
+12.you can see the cart when browser refresh not lose the data

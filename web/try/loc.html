@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose District and Show on Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+<h1>Choose District and Show on Map</h1>
+
+<!-- Dropdown to select district -->
+<label for="district">Select District:</label>
+<select id="district">
+    <option value="San Francisco">San Francisco</option>
+    <option value="Los Angeles">Los Angeles</option>
+    <option value="New York">New York</option>
+    <!-- Add more options as needed -->
+</select>
+
+<!-- Button to show district on map -->
+<button onclick="showDistrict()">Show District on Map</button>
+
+<!-- Map container -->
+<div id="map" style="height: 500px;"></div>
+
+<script>
+// Initialize the map
+var map = L.map('map').setView([37.7749, -122.4194], 13); // San Francisco coordinates
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+}).addTo(map);
+
+// Function to show selected district on map
+function showDistrict() {
+    var selectedDistrict = document.getElementById("district").value;
+
+    // You can fetch the geometry data for the selected district from MySQL using AJAX
+    // For demonstration, I am using hardcoded coordinates for San Francisco and Los Angeles
+    var coordinates = {
+        "San Francisco": [[37.7749, -122.4194]],
+        "Los Angeles": [[34.0522, -118.2437]],
+        "New York": [[40.7128, -74.0060]]
+    };
+
+    // Clear previous layers
+    map.eachLayer(function (layer) {
+        if (layer != map) {
+            map.removeLayer(layer);
+        }
+    });
+
+    // Add selected district to map
+    coordinates[selectedDistrict].forEach(coord => {
+        L.marker(coord).addTo(map)
+            .bindPopup(selectedDistrict)
+            .openPopup();
+    });
+
+    // Set view to selected district
+    map.setView(coordinates[selectedDistrict][0], 13);
+}
+</script>
+
+</body>
+</html>
